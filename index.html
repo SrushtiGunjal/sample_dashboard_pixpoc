@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pixpoc - WhatsApp Business Management Platform</title>
+    <meta name="description" content="Manage your WhatsApp Business communications with AI-powered automation, analytics, and integrations." />
+    <meta name="author" content="Pixpoc" />
+
+    <meta property="og:title" content="Pixpoc - WhatsApp Business Management Platform" />
+    <meta property="og:description" content="Manage your WhatsApp Business communications with AI-powered automation, analytics, and integrations." />
+    <meta property="og:type" content="website" />
+  <meta property="og:image" content="/og-image.png" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@pixpoc" />
+  <meta name="twitter:image" content="/og-image.png" />
+
+  <link rel="icon" href="/favicon.ico" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/logo.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="/logo.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/logo.png" />
+  </head>
+
+  <body>
+    <!-- Facebook SDK for JavaScript -->
+    <!-- Replace %VITE_FB_APP_ID% with your app ID via Vite environment variable VITE_FB_APP_ID -->
+    <div id="fb-root"></div>
+    <script>
+      window.fbAsyncInit = function() {
+        FB.init({
+          appId: "%VITE_FB_APP_ID%",
+          status: true,
+          xfbml: true,
+          version: "v24.0"
+        });
+        if (FB.AppEvents && typeof FB.AppEvents.logPageView === 'function') {
+          FB.AppEvents.logPageView();
+        }
+      };
+
+      // Dynamically load the Facebook SDK. Use debug build when VITE_FB_SDK_DEBUG is "true".
+      (function loadFbSdk() {
+        try {
+          var useDebug = "%VITE_FB_SDK_DEBUG%" === "true";
+        } catch (e) {
+          var useDebug = false;
+        }
+        var src = "https://connect.facebook.net/en_US/sdk" + (useDebug ? "/debug.js" : ".js");
+        var s = document.createElement('script');
+        s.async = true;
+        s.defer = true;
+        s.crossOrigin = 'anonymous';
+        s.src = src;
+        var first = document.getElementsByTagName('script')[0];
+        first.parentNode.insertBefore(s, first);
+      })();
+    </script>
+
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
